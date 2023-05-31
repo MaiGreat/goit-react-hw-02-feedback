@@ -1,27 +1,50 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import Statistics from './Statistics/Statistics';
+import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
+import Section from './Section/Section';
 
-export class App extends Component {
+
+class App extends Component {
   state = {
-  good: 0,
-  neutral: 0,
-  bad: 0
-  }
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  };
+
+
+  handleClickBtn = (e) => {
+    const nameBtn = e.target.textContent;
+    this.setState((prevState) => {
+      return {
+        [nameBtn]: prevState[nameBtn] + 1,
+      };
+    },
+  );
+  };
   
   render() {
+    const { good, neutral, bad } = this.state;
+
     return (
-      <div>
-        <h2>Please leave feedback</h2>
-        <ul>
-          <button>Good</button>
-          <button>Neutral</button>
-          <button>Bad</button>
-        </ul>
-        <h2>
-          <li>Good</li>
-          <li>Neutral</li>
-          <li>Bad</li>
-        </h2>
+      <div > 
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={Object.keys(this.state)}
+            onLeaveFeedback={this.handleClickBtn}
+            />
+          </Section>
+      <Section title="Statistics">
+        <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={this.countTotalFeedback}
+            positisveFeedback={this.countPositivePercentage}
+            />
+          </Section>
       </div>
     );
-  } 
-};
+  }
+}
+
+export default App;
