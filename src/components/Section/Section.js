@@ -9,11 +9,8 @@ const Section = ({ title, children }) => (
 );
 
 Section.protoTypes = {
-    good: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    positisveFeedback: PropTypes.func.isRequired
+    children: PropTypes.node,
+};
 
-}
 export default Section
