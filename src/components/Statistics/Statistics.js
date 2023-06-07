@@ -1,9 +1,13 @@
+import PropTypes from "prop-types";
 import React, { Component } from 'react';
 import css from './Statistics.module.css'
 import  Notification  from './Notification';
 
 class Statistics extends Component {
-    
+    static propTypes = {
+        title: PropTypes.string.isRequired,
+    };
+
     state = {
     total: 0,
     positisveFeedback: 0
