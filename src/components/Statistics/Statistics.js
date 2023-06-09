@@ -4,9 +4,6 @@ import css from './Statistics.module.css'
 
 
 class Statistics extends Component {
-    static propTypes = {
-        title: PropTypes.string.isRequired,
-    };
     
     render() {
         const { good, neutral, bad, total, positisveFeedback } = this.props;
